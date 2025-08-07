@@ -40,12 +40,27 @@ INSTALLED_APPS = [
     'app',
     'tailwind',
     'theme',
+    'rest_framework',
+    'corsheaders',
+    'api'
     
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 TAILWIND_APP_NAME='theme'
 NPM_BIN_PATH=r"C:\Users\Acer\AppData\Roaming\npm\npm.cmd"
+CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOWED__ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     
 ]
 
 ROOT_URLCONF = 'myproject.urls'
